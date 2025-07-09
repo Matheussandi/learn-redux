@@ -1,4 +1,4 @@
-import MovieImage from "../assets/movie.jpg";
+import MovieImage from "../assets/image.jpg";
 
 export const moviesMock = [
   {
