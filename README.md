@@ -2,7 +2,7 @@
 
 Este projeto é uma aplicação React que utiliza Redux Toolkit para gerenciar o estado global de uma lista de filmes. A aplicação permite visualizar, adicionar e remover filmes, demonstrando conceitos fundamentais de gerenciamento de estado com Redux Toolkit.
 
-![Prévia da aplicação](https://github.com/user-attachments/assets/0dfb160d-06be-4198-ae59-09af18127e95)
+[preview.webm](https://github.com/user-attachments/assets/483ca437-8aa7-4f62-8036-764e60fb88d9)
 
 ## 🛠️ Tecnologias Utilizadas
 
