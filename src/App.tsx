@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+
+import { useSelector } from 'react-redux';
+
+import { CardMovie } from './components/CardMovie'
+import { MovieFilter } from './components/MovieFilter'
+import { AddMovieModal } from './components/AddMovieModal'
+
+import type { RootState } from './store';
+import type { MovieProps } from './types/movieType';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const movies = useSelector((state: RootState) => state.movies.movies);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="max-w-screen-xl mx-auto px-4" style={{ maxWidth: '1200px' }}>
+      <div className="flex flex-col items-center mb-6 gap-4">
+        <MovieFilter />
+        <div className='flex gap-2'>
+          <button
+            className="px-4 py-2 bg-green-500 text-white rounded-md shadow hover:bg-green-600 transition-colors"
+            onClick={() => setIsModalOpen(true)}
+          >
+            + Adicionar
+          </button>
+          <button
+            className="px-4 py-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 transition-colors"
+            onClick={() => { }}
+          >
+            - Remover
+          </button>
+        </div>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div className="flex flex-wrap justify-center gap-4">
+        {movies.map((movie: MovieProps) => (
+          <CardMovie
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            description={movie.description}
+            image={movie.image}
+            star={movie.star}
+          />
+        ))}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <AddMovieModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </div>
+  );
 }
 
 export default App
